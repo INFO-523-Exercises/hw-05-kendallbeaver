@@ -7,4 +7,22 @@ editor: visual
 ```{r}
 
 # Import dataset
+
+if (!require(pacman))
+  install.packages("pacman")
+
+pacman::p_load(tidymodels,
+               tidyverse,
+               ranger,
+               randomForest,
+               glmnet,
+               here,
+               formattable,
+               dlookr,
+               yardstick,
+               gridExtra)
+
+colony <- read_csv(here('./data/cage-free-percentages.csv')
+                          
+stressor <- read_csv(here('./data/stressor.csv')
 ```
