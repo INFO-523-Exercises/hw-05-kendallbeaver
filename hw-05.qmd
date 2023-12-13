@@ -22,7 +22,34 @@ pacman::p_load(tidymodels,
                yardstick,
                gridExtra)
 
-colony <- read_csv(here('./data/cage-free-percentages.csv')
-                          
-stressor <- read_csv(here('./data/stressor.csv')
+# Read colony data (dataset is from 2015 - 2021)
+colony <- read_csv(here('./data/colony.csv'))
+colony |> filter(state %in% "Arizona")
+colony |> summary()
+
+# Read stressor data
+stressor <- read_csv(here('./data/stressor.csv'))
+stressor |> filter(state %in% "Arizona")
+stressor |> summary()
 ```
+
+## Colony Lost
+
+```{r}
+
+# Analyze Colony Lost - Max & Min 
+
+
+```
+
+## Stressors Killing Bee Colonies
+
+```{r}
+
+# Need to classify "Stressors" as factors instead of characters:
+
+
+
+my_data$Name <- as.factor(my_data$Name)
+```
+
