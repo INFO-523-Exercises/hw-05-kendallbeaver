@@ -145,15 +145,17 @@ pairs(numeric_data)
 heatmap(cor(numeric_dataset), col = colorRampPalette(c("blue", "white", "red"))(20))
 ```
 
-\
-
-## Ordinary Least Squares (OLS) Regression
+## Linear Modeling
 
 ```{r}
 
-# Assuming "your_data" is your dataset
-library(gplots)
-heatmap(cor(combined_dataset), col = colorRampPalette(c("blue", "white", "red"))(20))
+# Creating the regression model
+model1 <- lm(colony_added ~ colony_n, data = combined_dataset)
+model1
+
+# Creating the regression model
+model2 <- lm(colony_n ~ colony_added, data = combined_dataset)
+model2
 ```
 
 ## Part I of II: Colony Lost Analysis
