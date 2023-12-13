@@ -16,6 +16,7 @@ if (!require(pacman))
   install.packages("pacman")
 
 pacman::p_load(tidymodels,
+               dplyr,
                tidyverse,
                ranger,
                randomForest,
@@ -29,17 +30,45 @@ pacman::p_load(tidymodels,
 
 ```{r}
 
-# Import two correlated datasets: 
+# Import two correlated datasets, "colony" and "stressor": 
 
 # Read colony data (dataset is from 2015 - 2021)
 colony <- read_csv(here('./data/colony.csv'))
 arizona_colony <- filter(colony, state %in% "Arizona")
-arizona_colony |> summary()
+arizona_colony
 
 # Read stressor data
 stressor <- read_csv(here('./data/stressor.csv'))
 arizona_stressor <- filter(stressor, state %in% "Arizona")
 arizona_stressor
+```
+
+```{r}
+
+# Analyze "arizona_colony" data: 
+
+arizona_colony |> summary()
+
+# Check for missing values: 
+
+na_values_arizona_colony <- colSums(is.na(arizona_colony))
+na_values_arizona_colony
+
+# Analyze and inspect the rows missing values: 
+
+missing_rows_arizona_colony <- arizona_colony %>%
+  filter(!complete.cases(.))
+missing_rows_arizona_colony
+
+# Remove "colony_reno_pct" (impute):
+
+arizona_colony <- arizona_colony %>%
+  select(-colony_reno_pct) %>%
+  filter(!complete.cases(.))
+
+# Don't impute April-June 2019, and remove row, as this is only row with null values and entire row of data wasn't collected: 
+
+
 ```
 
 ```{r}
@@ -64,6 +93,8 @@ arizona_stressor
 
 ## Part I of II: Colony Lost Analysis
 
+This dataset views the trend of bee colonies lost in Arizona over a six-year period (2015-2021).
+
 ```{r}
 
 # Analyze Colony Lost - Max & Min 
@@ -87,3 +118,4 @@ min_age
 
 my_data$Name <- as.factor(my_data$Name)
 ```
+
