@@ -16,7 +16,7 @@ Varroa mites are parasites that feed off the bodily fluids of adult bees and you
 
 This assignment looks to analyze the linear affect that this parasite specifically has on the Arizona bee population from 2015 - 2021.
 
-## Import Packages
+## Data Preprocessing: Import Packages & Two Datasets
 
 ```{r}
 
@@ -36,11 +36,6 @@ pacman::p_load(tidymodels,
                dlookr,
                yardstick,
                gridExtra)
-```
-
-## Import Code
-
-```{r}
 
 # Import two correlated datasets, "colony" and "stressor": 
 
@@ -55,7 +50,7 @@ arizona_stressor <- filter(stressor, state %in% "Arizona")
 arizona_stressor
 ```
 
-## EDA Analysis on Colony Data for Arizona Bee Population
+## Data Preprocessing: Cleaning "Colony" Dataset
 
 ```{r}
 
@@ -86,7 +81,7 @@ arizona_colony
 arizona_colony %>% na.omit()
 ```
 
-## EDA Analysis on Stressor Dataset for Arizona Bees: Beginning to Analyze and Assess Major Causes of Population Decline
+## Data Preprocessing: Analyzing "Stressors" and Major Stressors Causing Decline in AZ Bee Population
 
 ```{r}
 
