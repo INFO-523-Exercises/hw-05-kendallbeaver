@@ -10,6 +10,8 @@ editor: visual
 
 Two national datasets regarding bee populations ("colony.csv") and stressors causing bee population decline ("stressor.csv") were analyzed for the purposes of analyzing and predicting liner regression.
 
+Data in both datasets have been categorized based on season and the two main culprits leading to population decline are "Varroa mites" followed by "Other pests/parasites".
+
 ## Import Packages
 
 ```{r}
@@ -87,32 +89,16 @@ arizona_colony %>% na.omit()
 # Filter stressor data: 
 
 arizona_stressor |> summary()
-arizona_stressor 
-
+arizona_stressor
 # Analyze "stress_pct" distribution with a box plot:
 
 boxplot(arizona_stressor$stress_pct, main = "Boxplot of stress_pct")
 
+# Rearrange stressor values from high to low:
 
-count_summary <- arizona_data %>%
-  count(stress_pct, stressor)
-count_summary
+arizona_stressor %>% arrange(desc(stress_pct))
 
-arizona_data$stressor <- as.factor(arizona_data$stressor)
-
-arizona_stressor_counts <- table(arizona_data$stressor)
-
-arizona_stressor <- table(arizona_data$stressor)
-arizona_stressor
-
-arizona_stressor_rank <- rank(-arizona_stressor_counts, ties.method = "min")
-
-arizona_stressor_summary <- data.frame(
-  Stressor = names(arizona_stressor_counts),
-  Count = arizona_stressor_counts,
-  Rank = arizona_stressor_rank)
-
-arizona_stressor
+# "Varroa mites" are having the main effect on the declining AZ bee population from a few seasonal months in 2015-2019, followed by "Other pests/parasites" in April-June 2016, then back to "Varroa mites from a few seasonal months in 2016-2018.
 ```
 
 ## Part I of II: Colony Lost Analysis
