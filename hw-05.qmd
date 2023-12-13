@@ -130,18 +130,19 @@ combined_dataset <- na.omit(combined_dataset)
 
 combined_dataset |> summary()
 
-# Create heatmap of numeric values:
-heatmap(cor(numeric_dataset), col = colorRampPalette(c("blue", "white", "red"))(20))
-
 # Need to remove non-numeric columns for pairs function:
 numeric_data <- combined_dataset %>%
   select_if(is.numeric)
 
+# Run combined_dataset in a correlation matrix:
+cor_matrix <- cor(numeric_data)
+cor_matrix
+
 # Run pairs function on filtered dataset:
 pairs(numeric_data)
 
-# Assuming "your_data" is your dataset
-pairs(combined_dataset)
+# Create heatmap of numeric values:
+heatmap(cor(numeric_dataset), col = colorRampPalette(c("blue", "white", "red"))(20))
 ```
 
 \
