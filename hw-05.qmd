@@ -76,6 +76,8 @@ arizona_colony
 arizona_colony %>% na.omit()
 ```
 
+## EDA Analysis on Stressor Dataset for Arizona Bees: Beginning to Analyze and Assess Major Causes of Population Decline
+
 ```{r}
 
 # Filter stressor data: 
