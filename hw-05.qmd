@@ -4,7 +4,9 @@ format: html
 editor: visual
 ---
 
-# Analyzing Factors Contributing to Loss of Bee Colonies
+# Analyzing Factors Contributing to Loss of Bee Colonies in Arizona
+
+## Code
 
 ```{r}
 
@@ -36,8 +38,12 @@ colony |> summary()
 
 # Read stressor data
 stressor <- read_csv(here('./data/stressor.csv'))
-stressor |> filter(state %in% "Arizona")
-stressor |> summary()
+arizona_data <- filter(stressor, state %in% "Arizona")
+
+arizona_data$stressor <- as.factor(arizona_data$stressor)
+
+arizona_stressor <- table(arizona_data$stressor)
+arizona_stressor
 ```
 
 ## Part I of II: Colony Lost Analysis
@@ -45,6 +51,9 @@ stressor |> summary()
 ```{r}
 
 # Analyze Colony Lost - Max & Min 
+
+stressor_counts <- table(stressor$stressor)
+stressor_counts
 
 max_colony_stressor <- max(stressor$stressor)
 min_colony_stressor <- min(stressor$stressor)
