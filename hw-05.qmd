@@ -176,12 +176,6 @@ index <- createDataPartition(combined_dataset$colony_n, p = 0.8, list = FALSE)
 train_data <- combined_dataset[index, ]
 test_data <- combined_dataset[-index, ]
 
-# Create the linear model using the training set:
-model2 <- lm(colony_n ~ colony_lost, data = train_data)
-
-# Print a summary of the model
-summary(model2)
-
 # Make predictions on the testing set
 predictions <- predict(model2, newdata = test_data)
 
@@ -191,4 +185,8 @@ mse <- mean((predictions - test_data$colony_n)^2)
 print(paste("Mean Squared Error on Test Set:", mse))
 ```
 
-## 
+## Conclusion
+
+The methodologies and data mining techniques used for linear regression analysis in this report conclude insignificant and high unreliable findings when trying to predict the relationship between parasites and their effects on the decline of bee population. This indicates that the combined datasets needs to be re-evaluated and better filtered and imputed during the correlation analysis of the Exploratory Data Analysis process.
+
+But most importantly, additional linear models must be chosen and used in cross-validation testing to determine the best model that will better fit the data than the singular model currently used in this analysis, which should therefore better predict the future Arizona bee population and how much the Varroa mite and other parasites may affect this population.
