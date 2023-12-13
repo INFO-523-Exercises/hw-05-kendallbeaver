@@ -33,16 +33,32 @@ pacman::p_load(tidymodels,
 
 # Read colony data (dataset is from 2015 - 2021)
 colony <- read_csv(here('./data/colony.csv'))
-colony |> filter(state %in% "Arizona")
-colony |> summary()
+arizona_colony <- filter(colony, state %in% "Arizona")
+arizona_colony |> summary()
 
 # Read stressor data
 stressor <- read_csv(here('./data/stressor.csv'))
-arizona_data <- filter(stressor, state %in% "Arizona")
+arizona_stressor <- filter(stressor, state %in% "Arizona")
+arizona_stressor
+```
+
+```{r}
+
+# Filter stressor data: 
 
 arizona_data$stressor <- as.factor(arizona_data$stressor)
 
+arizona_stressor_counts <- table(arizona_data$stressor)
+
 arizona_stressor <- table(arizona_data$stressor)
+
+arizona_stressor_rank <- rank(-arizona_stressor_counts, ties.method = "min")
+
+arizona_stressor_summary <- data.frame(
+  Stressor = names(arizona_stressor_counts),
+  Count = arizona_stressor_counts,
+  Rank = arizona_stressor_rank)
+
 arizona_stressor
 ```
 
