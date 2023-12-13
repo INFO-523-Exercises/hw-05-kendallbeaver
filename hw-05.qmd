@@ -4,9 +4,11 @@ format: html
 editor: visual
 ---
 
+# Analyzing Factors Contributing to Loss of Bee Colonies
+
 ```{r}
 
-# Import dataset
+# Load packages
 
 if (!require(pacman))
   install.packages("pacman")
@@ -21,6 +23,11 @@ pacman::p_load(tidymodels,
                dlookr,
                yardstick,
                gridExtra)
+```
+
+```{r}
+
+# Import two correlated datasets: 
 
 # Read colony data (dataset is from 2015 - 2021)
 colony <- read_csv(here('./data/colony.csv'))
@@ -33,16 +40,19 @@ stressor |> filter(state %in% "Arizona")
 stressor |> summary()
 ```
 
-## Colony Lost
+## Part I of II: Colony Lost Analysis
 
 ```{r}
 
 # Analyze Colony Lost - Max & Min 
 
-
+max_colony_stressor <- max(stressor$stressor)
+min_colony_stressor <- min(stressor$stressor)
+max_colony
+min_age
 ```
 
-## Stressors Killing Bee Colonies
+## Part II of II: Stressors Killing Bee Colonies
 
 ```{r}
 
@@ -52,4 +62,3 @@ stressor |> summary()
 
 my_data$Name <- as.factor(my_data$Name)
 ```
-
