@@ -12,6 +12,10 @@ Two national datasets regarding bee populations ("colony.csv") and stressors cau
 
 Data in both datasets have been categorized based on season and the two main culprits leading to population decline are "Varroa mites" followed by "Other pests/parasites".
 
+Varroa mites are parasites that feed off the bodily fluids of adult bees and younger, newborn bees within a bee population, leading to a significant decline in bee population across the entire nation.
+
+This assignment looks to analyze the linear affect that this parasite specifically has on the Arizona bee population from 2015 - 2021.
+
 ## Import Packages
 
 ```{r}
