@@ -6,7 +6,7 @@ editor: visual
 
 # Analyzing Factors Contributing to Loss of Bee Colonies in Arizona
 
-## Code
+## Import Packages
 
 ```{r}
 
@@ -28,6 +28,8 @@ pacman::p_load(tidymodels,
                gridExtra)
 ```
 
+## Import Code
+
 ```{r}
 
 # Import two correlated datasets, "colony" and "stressor": 
@@ -42,6 +44,8 @@ stressor <- read_csv(here('./data/stressor.csv'))
 arizona_stressor <- filter(stressor, state %in% "Arizona")
 arizona_stressor
 ```
+
+## EDA Analysis on Colony Data for Arizona
 
 ```{r}
 
