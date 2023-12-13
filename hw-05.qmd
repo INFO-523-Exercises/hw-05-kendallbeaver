@@ -36,6 +36,7 @@ pacman::p_load(tidymodels,
                dlookr,
                yardstick,
                ggplot,
+               gplots,
                gridExtra)
 
 # Import two correlated datasets, "colony" and "stressor": 
@@ -115,6 +116,10 @@ top_arizona_stressors
 combined_dataset <- merge(top_arizona_stressors, colony, by = c("year", "months", "state"))
 
 combined_dataset %>% arrange(desc(stress_pct))
+
+# Remove N/A values from combined_dataset:
+
+combined_dataset <- na.omit(combined_dataset)
 ```
 
 ## Data Preprocessing: Finding Correlations Between Numeric Columns
@@ -130,6 +135,9 @@ combined_dataset |> summary()
 numeric_dataset <- combined_dataset %>%
   select(-months, -state, -stressor)
 numeric_dataset
+
+# Create heatmap of numeric values:
+heatmap(cor(numeric_dataset), col = colorRampPalette(c("blue", "white", "red"))(20))
 ```
 
 \
