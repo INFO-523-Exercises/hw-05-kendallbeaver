@@ -6,6 +6,10 @@ editor: visual
 
 # Analyzing Factors Contributing to Loss of Bee Colonies in Arizona
 
+## Intro
+
+Two national datasets regarding bee populations ("colony.csv") and stressors causing bee population decline ("stressor.csv") were analyzed for the purposes of analyzing and predicting liner regression.
+
 ## Import Packages
 
 ```{r}
@@ -45,7 +49,7 @@ arizona_stressor <- filter(stressor, state %in% "Arizona")
 arizona_stressor
 ```
 
-## EDA Analysis on Colony Data for Arizona
+## EDA Analysis on Colony Data for Arizona Bee Population
 
 ```{r}
 
@@ -87,6 +91,7 @@ arizona_data$stressor <- as.factor(arizona_data$stressor)
 arizona_stressor_counts <- table(arizona_data$stressor)
 
 arizona_stressor <- table(arizona_data$stressor)
+arizona_stressor
 
 arizona_stressor_rank <- rank(-arizona_stressor_counts, ties.method = "min")
 
