@@ -23,6 +23,7 @@ if (!require(pacman))
 
 pacman::p_load(tidymodels,
                dplyr,
+               tibble,
                tidyverse,
                ranger,
                randomForest,
@@ -111,7 +112,7 @@ top_arizona_stressors <- arizona_stressor %>%
 top_arizona_stressors
 
 combined_dataset <- merge(top_arizona_stressors, colony, by = c("year", "months", "state"))
-
+combined_dataset <- as_tibble(combined_dataset)
 combined_dataset %>% arrange(desc(stress_pct))
 
 # Remove N/A values from combined_dataset:
@@ -139,7 +140,7 @@ cor_matrix
 pairs(numeric_data)
 
 # Create heatmap of numeric values:
-heatmap(cor(numeric_dataset), col = colorRampPalette(c("blue", "white", "red"))(20))
+heatmap(cor(numeric_data), col = colorRampPalette(c("blue", "white", "red"))(20))
 ```
 
 ## Designing & Creating Linear Models
