@@ -89,13 +89,14 @@ arizona_colony %>% na.omit()
 
 arizona_stressor |> summary()
 arizona_stressor
-# Analyze "stress_pct" distribution with a box plot:
-
-boxplot(arizona_stressor$stress_pct, main = "Boxplot of stress_pct")
 
 # Rearrange stressor values from high to low:
 
 arizona_stressor %>% arrange(desc(stress_pct))
+
+# Analyze "stress_pct" distribution with a box plot:
+
+boxplot(arizona_stressor$stress_pct, main = "Boxplot of stress_pct")
 
 # "Varroa mites" are having the main effect on the declining AZ bee population from a few seasonal months in 2015-2019, followed by "Other pests/parasites" in April-June 2016, then back to "Varroa mites from a few seasonal months in 2016-2018.
 ```
@@ -110,10 +111,19 @@ top_arizona_stressors <- arizona_stressor %>%
   filter(stressor %in% c("Varroa mites", "Other pests/parasites"))
 top_arizona_stressors
 
-merged_dataset <- merge(top_arizona_stressors, colony, by = c("year", "months", "state"))
+combined_dataset <- merge(top_arizona_stressors, colony, by = c("year", "months", "state"))
+
+combined_dataset %>% arrange(desc(stress_pct))
 ```
 
 ## Ordinary Least Squares (OLS) Regression
+
+```{r}
+
+# Assuming "your_data" is your dataset
+library(gplots)
+heatmap(cor(combined_dataset), col = colorRampPalette(c("blue", "white", "red"))(20))
+```
 
 ## Part I of II: Colony Lost Analysis
 
