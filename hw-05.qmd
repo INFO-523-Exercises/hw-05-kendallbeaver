@@ -33,6 +33,7 @@ pacman::p_load(tidymodels,
                yardstick,
                ggplot,
                gplots,
+               caret,
                gridExtra)
 
 # Import two correlated datasets, "colony" and "stressor": 
@@ -141,7 +142,7 @@ pairs(numeric_data)
 heatmap(cor(numeric_dataset), col = colorRampPalette(c("blue", "white", "red"))(20))
 ```
 
-## Linear Modeling
+## Designing & Creating Linear Models
 
 ```{r}
 
@@ -163,30 +164,31 @@ par(mfrow = c(2, 2))
 plot(model2)
 ```
 
-## Part I of II: Colony Lost Analysis
-
-This dataset views the trend of bee colonies lost in Arizona over a six-year period (2015-2021).
+## Testing Linear Model
 
 ```{r}
 
-# Analyze Colony Lost - Max & Min 
+# Set seed:
+set.seed(123)
 
-stressor_counts <- table(stressor$stressor)
-stressor_counts
+# Conduct 80% training/20% testing split:
+index <- createDataPartition(combined_dataset$colony_n, p = 0.8, list = FALSE)
+train_data <- combined_dataset[index, ]
+test_data <- combined_dataset[-index, ]
 
-max_colony_stressor <- max(stressor$stressor)
-min_colony_stressor <- min(stressor$stressor)
-max_colony
-min_age
+# Create the linear model using the training set:
+model2 <- lm(colony_n ~ colony_lost, data = train_data)
+
+# Print a summary of the model
+summary(model2)
+
+# Make predictions on the testing set
+predictions <- predict(model2, newdata = test_data)
+
+# Evaluate the model performance on the testing set (you can use different metrics)
+# For example, you might want to use mean squared error (MSE)
+mse <- mean((predictions - test_data$colony_n)^2)
+print(paste("Mean Squared Error on Test Set:", mse))
 ```
 
-## Part II of II: Stressors Killing Bee Colonies
-
-```{r}
-
-# Need to classify "Stressors" as factors instead of characters:
-
-
-
-my_data$Name <- as.factor(my_data$Name)
-```
+## 
