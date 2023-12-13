@@ -100,6 +100,10 @@ arizona_stressor %>% arrange(desc(stress_pct))
 # "Varroa mites" are having the main effect on the declining AZ bee population from a few seasonal months in 2015-2019, followed by "Other pests/parasites" in April-June 2016, then back to "Varroa mites from a few seasonal months in 2016-2018.
 ```
 
+## Data Preprocessing: Combine Both Datasets Based on Population Count and Stressors
+
+## Ordinary Least Squares (OLS) Regression
+
 ## Part I of II: Colony Lost Analysis
 
 This dataset views the trend of bee colonies lost in Arizona over a six-year period (2015-2021).
