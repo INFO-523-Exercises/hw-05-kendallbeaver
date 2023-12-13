@@ -102,6 +102,15 @@ arizona_stressor %>% arrange(desc(stress_pct))
 
 ## Data Preprocessing: Combine Both Datasets Based on Population Count and Stressors
 
+```{r}
+
+# First filter "Stressor" dataset for top 2 stressors then concatonate with corresponding bee population from "Colony" dataset
+
+top_arizona_stressors <- arizona_stressor %>%
+  filter(stressor %in% c("Varroa mites", "Other pests/parasites"))
+top_arizona_stressors
+```
+
 ## Ordinary Least Squares (OLS) Regression
 
 ## Part I of II: Colony Lost Analysis
