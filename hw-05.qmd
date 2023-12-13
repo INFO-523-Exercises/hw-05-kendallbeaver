@@ -62,13 +62,14 @@ missing_rows_arizona_colony
 
 # Remove "colony_reno_pct" (impute):
 
-arizona_colony <- arizona_colony %>%
-  select(-colony_reno_pct) %>%
-  filter(!complete.cases(.))
+arizona_colony %>%
+    select(-colony_reno_pct) %>%
+    filter(!complete.cases(.))
+arizona_colony
 
 # Don't impute April-June 2019, and remove row, as this is only row with null values and entire row of data wasn't collected: 
 
-
+arizona_colony %>% na.omit()
 ```
 
 ```{r}
@@ -118,4 +119,3 @@ min_age
 
 my_data$Name <- as.factor(my_data$Name)
 ```
-
