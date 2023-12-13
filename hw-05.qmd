@@ -86,6 +86,18 @@ arizona_colony %>% na.omit()
 
 # Filter stressor data: 
 
+arizona_stressor |> summary()
+arizona_stressor 
+
+# Analyze "stress_pct" distribution with a box plot:
+
+boxplot(arizona_stressor$stress_pct, main = "Boxplot of stress_pct")
+
+
+count_summary <- arizona_data %>%
+  count(stress_pct, stressor)
+count_summary
+
 arizona_data$stressor <- as.factor(arizona_data$stressor)
 
 arizona_stressor_counts <- table(arizona_data$stressor)
