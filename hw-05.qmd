@@ -35,6 +35,7 @@ pacman::p_load(tidymodels,
                formattable,
                dlookr,
                yardstick,
+               ggplot,
                gridExtra)
 
 # Import two correlated datasets, "colony" and "stressor": 
@@ -115,6 +116,23 @@ combined_dataset <- merge(top_arizona_stressors, colony, by = c("year", "months"
 
 combined_dataset %>% arrange(desc(stress_pct))
 ```
+
+## Data Preprocessing: Finding Correlations Between Numeric Columns
+
+```{r}
+
+# Find numeric columns in combined dataset: 
+
+combined_dataset |> summary()
+
+# Create variable to store numeric column names:
+
+numeric_dataset <- combined_dataset %>%
+  select(-months, -state, -stressor)
+numeric_dataset
+```
+
+\
 
 ## Ordinary Least Squares (OLS) Regression
 
